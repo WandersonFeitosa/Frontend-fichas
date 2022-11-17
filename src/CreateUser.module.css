@@ -1,0 +1,16 @@
+.errorMsg {
+  margin: 0 auto;
+  max-width: max-content;
+  font-size: 0.7rem;
+  color: var(--red-500);
+  margin-bottom: 1rem;
+  transition: 0.3s;
+}
+.successMsg {
+  margin: 0 auto;
+  max-width: max-content;
+  font-size: 0.7rem;
+  color: var(--green-300);
+  margin-bottom: 1rem;
+  transition: 0.3s;
+}
