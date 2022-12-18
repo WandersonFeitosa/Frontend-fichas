@@ -1,12 +1,60 @@
+import { useState } from "react";
+import styles from "./Login.module.css";
+
 interface LoginProps {
-  setUserId: Function;
+  setUserInfo: Function;
 }
-export function Login({ setUserId }: LoginProps) {
+export function Login({ setUserInfo }: LoginProps) {
+  const [returnColor, setReturnColor] = useState(styles.errorMsg);
+  const [errorMsg, setErrorMsg] = useState("");
+
+  function handleLogin(event: any) {
+    event.preventDefault();
+
+    const form = event.target;
+
+    const loginInfo = {
+      username: form.username.value.toLowerCase(),
+      senha: form.senha.value,
+    };
+
+    const logUser = async () => {
+      const result = await fetch(`http://localhost:3333/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(loginInfo),
+      });
+      const jsonResult = await result.json();
+
+      if (result.status < 300) {
+        setReturnColor(styles.successMsg);
+        setUserInfo(jsonResult.userInfo);
+      } else {
+        setReturnColor(styles.errorMsg);
+      }
+      setErrorMsg(jsonResult.message);
+    };
+    logUser();
+  }
+
+  function handleLogout() {
+    setUserInfo({});
+    setErrorMsg("Deslogado");
+  }
+
   return (
-    <form action="">
-      <input type="text" name="username" placeholder="Username" />
-      <input type="text" name="senha" placeholder="Senha" />
-      <button>Submit</button>
-    </form>
+    <div>
+      <form onSubmit={handleLogin}>
+        <input type="text" name="username" placeholder="Username" />
+        <input type="password" name="senha" placeholder="Senha" />
+        <div className={returnColor}>{errorMsg}</div>
+        <button>Submit</button>
+      </form>
+      <button onClick={handleLogout} className={styles.logout}>
+        Logout
+      </button>
+    </div>
   );
 }

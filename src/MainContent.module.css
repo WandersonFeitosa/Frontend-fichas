@@ -1,0 +1,11 @@
+.blockTitle {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+}
+.block {
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  padding: 2rem 0.5rem;
+}

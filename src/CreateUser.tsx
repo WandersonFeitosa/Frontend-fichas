@@ -10,7 +10,7 @@ export function CreateUser() {
     const newUser = {
       nome: form.name.value,
       sobrenome: form.lastName.value,
-      username: form.username.value,
+      username: form.username.value.toLowerCase(),
       email: form.email.value,
       senha: form.password.value,
     };

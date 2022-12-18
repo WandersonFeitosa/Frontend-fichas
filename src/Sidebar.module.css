@@ -1,7 +1,7 @@
 .sidebarWrapper {
   display: grid;
   grid-template-columns: 250px 1fr auto;
-  gap: 2rem;
+  gap: 1rem;
   align-items: flex-start;
 }
 .aside {
@@ -10,6 +10,9 @@
   overflow: hidden;
   padding: 2rem;
   margin-bottom: 1rem;
+}
+.middleRow {
+  width: 230px;
 }
 .title {
   text-align: center;
@@ -27,10 +30,11 @@ input {
   padding: 0.5rem;
   border-radius: 8px;
   color: var(--gray-100);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 input::placeholder {
   color: var(--gray-100);
+  opacity: 0.4;
 }
 button {
   font-size: 0.875rem;
@@ -51,4 +55,15 @@ button {
 button:hover {
   background: var(--green-500);
   color: var(--white);
+}
+
+select {
+  width: 100%;
+  background: none;
+  color: var(--gray-100);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+select * {
+  background: var(--gray-700);
 }
