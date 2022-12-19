@@ -1,0 +1,39 @@
+.charInfoBlock {
+  display: flex;
+  margin-top: 1rem;
+  border: 1px solid var(--white);
+  border-radius: 8px;
+  gap: 0.5rem;
+}
+.charInfoCollmun {
+  width: 50%;
+  padding: 1rem;
+}
+.leftCollumn {
+  border-left: 1px solid var(--white);
+  display: flex;
+  align-items: center;
+}
+.charInfoItem {
+  margin-bottom: 1rem;
+}
+.skillsBlock {
+  padding: 0.5rem;
+  padding-top: 1rem;
+}
+.skill {
+  display: inline-flex;
+  justify-content: center;
+  width: 7.9rem;
+  padding: 1rem;
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;  
+  margin-bottom: 1rem;
+  border: 1px solid var(--white);
+  border-radius: 8px;
+  text-transform: capitalize;
+}
+.skill:hover{
+  cursor: pointer;
+  background: var(--gray-900);
+}
