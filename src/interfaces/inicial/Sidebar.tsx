@@ -1,7 +1,7 @@
 import { AddCharOnTable } from "../../components/AddCharOnTable";
 import { CreateTable } from "../../components/CreateTable";
 import { CreateUser } from "../../components/CreateUser";
-import { UserInfo } from "../../@types/InterfaceTypes";
+import { UserInfo } from "../../@types/Types";
 import { Login } from "../../components/Login";
 import styles from "../../assets/css/interfaces/inicial/Sidebar.module.css";
 interface SidebarProps {

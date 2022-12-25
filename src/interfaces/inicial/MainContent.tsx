@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserInfo } from "../../@types/InterfaceTypes";
+import { UserInfo } from "../../@types/Types";
 import styles from "../../assets/css/interfaces/inicial/MainContent.module.css";
 import { ShowCharInfo } from "../../components/ShowCharInfo";
 

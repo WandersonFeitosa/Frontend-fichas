@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from "react";
-import { CharInfo, UserInfo } from "../@types/InterfaceTypes";
+import { CharInfo, UserInfo } from "../@types/Types";
 import styles from "../assets/css/components/ShowCharInfo.module.css";
 import env from "../../env.json";
 

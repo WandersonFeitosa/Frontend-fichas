@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "../assets/css/components/AddCharOnTable.module.css";
-import { UserInfo } from "../@types/InterfaceTypes";
+import { UserInfo } from "../@types/Types";
 
 interface AddCharOnTable {
   userInfo: UserInfo;

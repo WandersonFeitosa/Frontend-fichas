@@ -4,7 +4,7 @@ import styles from "./App.module.css";
 import { Sidebar } from "./interfaces/inicial/Sidebar";
 import { MainContent } from "./interfaces/inicial/MainContent";
 import { useState } from "react";
-import { UserInfo } from "./@types/InterfaceTypes";
+import { UserInfo } from "./@types/Types";
 
 function App() {
   const [userInfo, setUserInfo] = useState<UserInfo>({
