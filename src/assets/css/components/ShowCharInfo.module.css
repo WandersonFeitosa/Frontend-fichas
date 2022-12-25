@@ -23,17 +23,16 @@
 }
 .skill {
   display: inline-flex;
-  justify-content: center;
-  width: 7.9rem;
+  width: 6vw;
+  font-size: 0.8vw;
+  margin: 0.5rem;
   padding: 1rem;
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;  
-  margin-bottom: 1rem;
+  justify-content: center;
   border: 1px solid var(--white);
   border-radius: 8px;
   text-transform: capitalize;
 }
-.skill:hover{
+.skill:hover {
   cursor: pointer;
   background: var(--gray-900);
 }

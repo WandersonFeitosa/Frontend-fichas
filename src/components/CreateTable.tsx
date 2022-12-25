@@ -1,6 +1,6 @@
 import { useState } from "react";
-import styles from "./CreateTable.module.css";
-import { UserInfo } from "./InterfaceTypes";
+import styles from "../assets/css/components/CreateTable.module.css";
+import { UserInfo } from "../@types/InterfaceTypes";
 
 interface CreateTableProps {
   userInfo: UserInfo;

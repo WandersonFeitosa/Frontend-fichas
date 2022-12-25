@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./CreateUser.module.css";
+import styles from "../assets/css/components/CreateUser.module.css";
 
 export function CreateUser() {
   const [errorMsg, setErrorMsg] = useState("");

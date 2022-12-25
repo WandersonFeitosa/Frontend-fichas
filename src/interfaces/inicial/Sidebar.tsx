@@ -1,11 +1,9 @@
-import { ChangeEvent, useEffect, useState } from "react";
-import { AddCharOnTable } from "./AddCharOnTable";
-import { CreateTable } from "./CreateTable";
-import { CreateUser } from "./CreateUser";
-import { UserInfo } from "./InterfaceTypes";
-import { Login } from "./Login";
-import styles from "./Sidebar.module.css";
-
+import { AddCharOnTable } from "../../components/AddCharOnTable";
+import { CreateTable } from "../../components/CreateTable";
+import { CreateUser } from "../../components/CreateUser";
+import { UserInfo } from "../../@types/InterfaceTypes";
+import { Login } from "../../components/Login";
+import styles from "../../assets/css/interfaces/inicial/Sidebar.module.css";
 interface SidebarProps {
   userInfo: UserInfo;
   setUserInfo: Function;

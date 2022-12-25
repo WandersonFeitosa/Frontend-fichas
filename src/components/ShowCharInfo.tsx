@@ -1,16 +1,17 @@
 import { ChangeEvent, useState } from "react";
-import { CharInfo, UserInfo } from "./InterfaceTypes";
-import styles from "./ShowCharInfo.module.css";
-import env from "../env.json";
+import { CharInfo, UserInfo } from "../@types/InterfaceTypes";
+import styles from "../assets/css/components/ShowCharInfo.module.css";
+import env from "../../env.json";
 
 interface ShowCharInfoProps {
   userInfo: UserInfo;
 }
+type SkillsInfo = Array<[string, number]>;
 
 export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
   const [chars, setChars] = useState<CharInfo[]>([]);
   const [charInfo, setCharInfo] = useState<CharInfo>();
-  const [skillsArray, setSkillsArray] = useState([["Pericias", 0]]);
+  const [skillsArray, setSkillsArray] = useState<SkillsInfo>([]);
 
   function showChars() {
     const listChars = async () => {
@@ -34,10 +35,7 @@ export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
       (x) => x.id === event?.target.value
     );
     setCharInfo(charStatus);
-
-    if (!charStatus?.pericias) {
-      setSkillsArray([]);
-    } else {
+    if (charStatus) {
       setSkillsArray(Object.entries(charStatus.pericias));
     }
   }

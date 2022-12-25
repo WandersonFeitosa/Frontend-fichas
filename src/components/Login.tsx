@@ -1,5 +1,5 @@
 import { useState } from "react";
-import styles from "./Login.module.css";
+import styles from "../assets/css/components/Login.module.css";
 
 interface LoginProps {
   setUserInfo: Function;
@@ -47,8 +47,13 @@ export function Login({ setUserInfo }: LoginProps) {
   return (
     <div>
       <form onSubmit={handleLogin}>
-        <input type="text" name="username" placeholder="Username" />
-        <input type="password" name="senha" placeholder="Senha" />
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value="vandaum"
+        />
+        <input type="password" name="senha" placeholder="Senha" value="senha" />
         <div className={returnColor}>{errorMsg}</div>
         <button>Submit</button>
       </form>

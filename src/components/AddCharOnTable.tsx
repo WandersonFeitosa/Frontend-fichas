@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import styles from "./AddCharOnTable.module.css";
-import { UserInfo } from "./InterfaceTypes";
+import styles from "../assets/css/components/AddCharOnTable.module.css";
+import { UserInfo } from "../@types/InterfaceTypes";
 
 interface AddCharOnTable {
   userInfo: UserInfo;
@@ -31,7 +31,7 @@ export function AddCharOnTable({ userInfo }: AddCharOnTable) {
     } else {
       listTables();
     }
-  });
+  }, [userInfo]);
 
   function handleBindChar(event: any) {
     event.preventDefault();

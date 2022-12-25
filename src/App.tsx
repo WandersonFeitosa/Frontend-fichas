@@ -1,10 +1,10 @@
 import "./global.css";
 import styles from "./App.module.css";
 
-import { Sidebar } from "./Sidebar";
-import { MainContent } from "./MainContent";
+import { Sidebar } from "./interfaces/inicial/Sidebar";
+import { MainContent } from "./interfaces/inicial/MainContent";
 import { useState } from "react";
-import { UserInfo } from "./InterfaceTypes";
+import { UserInfo } from "./@types/InterfaceTypes";
 
 function App() {
   const [userInfo, setUserInfo] = useState<UserInfo>({

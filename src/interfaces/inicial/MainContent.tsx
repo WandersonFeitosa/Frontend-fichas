@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { UserInfo } from "./InterfaceTypes";
-import styles from "./MainContent.module.css";
-import { ShowCharInfo } from "./ShowCharInfo";
+import { UserInfo } from "../../@types/InterfaceTypes";
+import styles from "../../assets/css/interfaces/inicial/MainContent.module.css";
+import { ShowCharInfo } from "../../components/ShowCharInfo";
 
 interface MainContentProps {
   userInfo: UserInfo;
