@@ -61,6 +61,10 @@ export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
       <div className={styles.charInfoBlock}>
         <div className={styles.charInfoCollmun}>
           <div className={styles.charInfoItem}>
+            <span>Id: </span>
+            {charInfo?.id}
+          </div>
+          <div className={styles.charInfoItem}>
             <span>Nome: </span>
             {charInfo?.nome}
           </div>

@@ -1,12 +1,4 @@
-.wrapper {
-  margin: 2rem auto;
-  padding: 0 1rem;
 
-  display: grid;
-  grid-template-columns:  768px 1fr;
-  gap: 2rem;
-  align-items: flex-start;
-}
 main {
   background: var(--gray-700);
   border-radius: 8px;

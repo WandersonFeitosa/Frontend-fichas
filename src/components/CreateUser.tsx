@@ -41,7 +41,7 @@ export function CreateUser() {
       <input type="email" placeholder="Email" name="email" required />
       <input type="password" placeholder="Senha" name="password" required />
       <div className={returnColor}>{errorMsg}</div>
-      <button type="submit">Submit</button>
+      <button type="submit">Criar conta</button>
     </form>
   );
 }

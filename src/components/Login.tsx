@@ -39,11 +39,6 @@ export function Login({ setUserInfo }: LoginProps) {
     logUser();
   }
 
-  function handleLogout() {
-    setUserInfo({});
-    setErrorMsg("Deslogado");
-  }
-
   return (
     <div>
       <form onSubmit={handleLogin}>
@@ -51,15 +46,12 @@ export function Login({ setUserInfo }: LoginProps) {
           type="text"
           name="username"
           placeholder="Username"
-          value="vandaum"
+         
         />
         <input type="password" name="senha" placeholder="Senha" value="senha" />
         <div className={returnColor}>{errorMsg}</div>
-        <button>Submit</button>
+        <button>Entrar</button>
       </form>
-      <button onClick={handleLogout} className={styles.logout}>
-        Logout
-      </button>
     </div>
   );
 }

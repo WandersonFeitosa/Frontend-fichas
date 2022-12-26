@@ -7,8 +7,8 @@ export interface CharInfo {
   patente?: string;
   afinidade?: string;
   origem: string;
-  versatilidade: string;
-  idade: number;
+  versatilidade?: string;
+  idade?: number;
   atributos: {
     forca: number;
     agilidade: number;
@@ -50,9 +50,9 @@ export interface CharInfo {
 }
 
 export interface UserInfo {
-  id: string;
-  name: string;
-  lastName: string;
-  email: string;
-  username: string;
+  id?: string;
+  name?: string;
+  lastName?: string;
+  email?: string;
+  username?: string;
 }
