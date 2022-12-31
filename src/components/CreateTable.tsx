@@ -10,8 +10,18 @@ export function CreateTable({ userInfo }: CreateTableProps) {
   const [errorMsg, setErrorMsg] = useState("");
   const [returnColor, setReturnColor] = useState(styles.errorMsg);
   function handleCreateTable(event: any) {
+    setErrorMsg("");
+    setReturnColor(styles.errorMsg);
     event.preventDefault();
+
     const form = event.target;
+    const tableTitle = form.tableName.value;
+
+    if (!tableTitle.trim().length) {
+      setErrorMsg("Preencha o campo");
+      return;
+    }
+
     const newTable = {
       id_usuario: userInfo.id,
       titulo: form.tableName.value,
@@ -31,8 +41,7 @@ export function CreateTable({ userInfo }: CreateTableProps) {
       } else {
         setReturnColor(styles.errorMsg);
       }
-      setErrorMsg(jsonResult.message);
-      console.log(jsonResult.error);
+      setErrorMsg(jsonResult.message);    
     };
     fetchData();
   }

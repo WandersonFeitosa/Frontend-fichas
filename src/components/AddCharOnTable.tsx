@@ -34,6 +34,7 @@ export function AddCharOnTable({ userInfo }: AddCharOnTable) {
   }, [userInfo]);
 
   function handleBindChar(event: any) {
+    setErrorMsg("");
     event.preventDefault();
     const form = event.target;
     const bindInfo = {

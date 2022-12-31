@@ -46,7 +46,7 @@ export function Login({ setUserInfo }: LoginProps) {
           type="text"
           name="username"
           placeholder="Username"
-         
+          value="vandaum"
         />
         <input type="password" name="senha" placeholder="Senha" value="senha" />
         <div className={returnColor}>{errorMsg}</div>

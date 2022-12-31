@@ -1,9 +1,6 @@
 .wrapper {
   margin: 2rem auto;
   padding: 0 1rem;
-
-  display: grid;
-  grid-template-columns: 768px 1fr;
+  display: flex;
   gap: 2rem;
-  align-items: flex-start;
 }

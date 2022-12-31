@@ -1,25 +1,45 @@
-import { AddCharOnTable } from "../../components/AddCharOnTable";
-import { CreateTable } from "../../components/CreateTable";
-import { UserInfo } from "../../@types/Types";
+import { useState } from "react";
 import styles from "../../assets/css/interfaces/navigationScreen/Sidebar.module.css";
 interface SidebarProps {
-  userInfo: UserInfo;
+  setMainPages: Function;
 }
 
-export function Sidebar({ userInfo }: SidebarProps) {
+export function Sidebar({ setMainPages }: SidebarProps) {
+  function handleMainContent(event: any) {
+    const pageNumber = event.target.value;
+    setMainPages(Number(pageNumber));
+  }
+  /*
+  Índice
+  0 - Informações
+  1 - Mesas
+  2 - Personagens 
+  */
   return (
     <div className={styles.sidebarWrapper}>
-      <div className={styles.middleRow}>
-        <aside className={styles.aside}>
-          <div className={styles.title}>Criar uma Mesa</div>
-          <CreateTable userInfo={userInfo} />
-        </aside>
-        <aside className={styles.aside}>
-          <div className={styles.title}>Adicionar personagem na mesa</div>
-          <AddCharOnTable userInfo={userInfo} />
-        </aside>
-      </div>
-      <div></div>
+      <aside className={styles.aside}>
+        <div className={styles.title}> Menu</div>
+        <ul>
+          <li onClick={handleMainContent} value="0">
+            Informações do usuário
+          </li>
+          <li onClick={handleMainContent} value="1">
+            Mesas
+          </li>
+          <li onClick={handleMainContent} value="2">
+            Personagens
+          </li>
+          <li onClick={handleMainContent} value="3">
+            Itens
+          </li>
+          <li onClick={handleMainContent} value="4">
+            Poderes
+          </li>
+          <li onClick={handleMainContent} value="5">
+            Rituais
+          </li>
+        </ul>
+      </aside>
     </div>
   );
 }
