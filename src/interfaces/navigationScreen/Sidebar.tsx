@@ -30,12 +30,15 @@ export function Sidebar({ setMainPages }: SidebarProps) {
             Personagens
           </li>
           <li onClick={handleMainContent} value="3">
-            Itens
+            Crie seu personagem
           </li>
           <li onClick={handleMainContent} value="4">
-            Poderes
+            Itens
           </li>
           <li onClick={handleMainContent} value="5">
+            Poderes
+          </li>
+          <li onClick={handleMainContent} value="6">
             Rituais
           </li>
         </ul>

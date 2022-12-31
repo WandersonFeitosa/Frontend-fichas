@@ -1,12 +1,12 @@
 import { ChangeEvent, useState } from "react";
-import { CharInfo, UserInfo } from "../@types/Types";
+import { CharInfo, SkillsInfo, UserInfo } from "../@types/Types";
 import styles from "../assets/css/components/ShowCharInfo.module.css";
 import env from "../../env.json";
 
 interface ShowCharInfoProps {
   userInfo: UserInfo;
 }
-type SkillsInfo = Array<[string, number]>;
+
 
 export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
   const [chars, setChars] = useState<CharInfo[]>([]);

@@ -11,7 +11,7 @@ export function NavigationScreen({
   userInfo,
   setUserInfo,
 }: NavigationScreenProps) {
-  const [mainPages, setMainPages] = useState(6);
+  const [mainPages, setMainPages] = useState(0);
   return (
     <div className={styles.wrapper}>
       <Sidebar setMainPages={setMainPages} />

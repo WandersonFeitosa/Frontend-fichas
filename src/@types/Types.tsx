@@ -56,3 +56,4 @@ export interface UserInfo {
   email?: string;
   username?: string;
 }
+export type SkillsInfo = Array<[string, number]>;

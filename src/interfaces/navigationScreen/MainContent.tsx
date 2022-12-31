@@ -75,7 +75,7 @@ export function MainContent({
         </div>
       );
     }
-    if (mainPages == 6) {
+    if (mainPages == 3) {
       return (
         <div>
           <div className={styles.blockTitle}> Crie seu Personagem </div>

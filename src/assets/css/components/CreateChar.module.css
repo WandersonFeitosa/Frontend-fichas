@@ -1,0 +1,45 @@
+.blockWrapper {
+  display: flex;
+  gap: 1rem;
+}
+.block {
+  width: 33%;
+  border: 1px solid var(--gray-300);
+  border-radius: 8px;
+  padding: 1rem;
+}
+.formItem {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.blockTitle {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.3rem;
+}
+.formItem label {
+  width: 10rem;
+}
+.formItem input,
+.formItem select {
+  margin-bottom: 0;
+}
+.skillsFormWrapperButton {
+  margin-bottom: 2rem;
+}
+.skillsFormWrapper {
+  display: flex;
+  gap: 1rem;
+}
+.skillErrorMsg {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 0.875rem;
+  color: var(--red-500);
+}
+.skill {
+  margin-bottom: 1rem;
+}
