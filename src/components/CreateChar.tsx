@@ -1,44 +1,50 @@
 import { ChangeEvent, useState } from "react";
-import { CharInfo, SkillsInfo, UserInfo } from "../@types/Types";
+import { SkillsInfo, UserInfo } from "../@types/Types";
 import styles from "../assets/css/components/CreateChar.module.css";
 interface CreateCharProps {
   userInfo: UserInfo;
 }
 export function CreateChar({ userInfo }: CreateCharProps) {
-  const [skills, setSkills] = useState({});
+  const [skills, setSkills] = useState<any>([]);
   const [skillErrorMsg, setSkillErrorMsg] = useState("");
   const [skillsData, setSkillsData] = useState({
     skillName: "",
     skillValue: "",
   });
-  const [skillsArray, setSkillsArray] = useState<SkillsInfo>([]);
 
-  function handleEditSkillField(
-    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) {
+  function handleEditSkillField(event: ChangeEvent<HTMLInputElement>) {
     const inputName = event.target.name;
     const inputValue = event.target.value;
     const newData = { ...skillsData, [inputName]: inputValue };
     setSkillsData(newData);
   }
-
-  function handleAddSkill() {
-    if (skillsData.skillName.length < 1) {
-      setSkillErrorMsg("Preencha o nome da perícia");
-      return;
+  function checkDuplicatedSkill(skillName: string) {
+    const found = skills.find((skill: string) => skill.at(0) == skillName);
+    if (found) {
+      return true;
     }
-    if (Number(skillsData.skillValue) < 5) {
-      setSkillErrorMsg("Escolha o valor do bônus");
-      return;
-    }
-
-    setSkillErrorMsg("");
-    const newArray = [
-      ...skillsArray,
-      [skillsData.skillName, Number(skillsData.skillValue)],
-    ];
-    setSkillsArray(newArray);
   }
+  function validateSkill(skillName: string, skillValue: number) {
+    if (!skillName) {
+      setSkillErrorMsg("Preencha o nome da perícia");
+    } else if (!skillValue) {
+      setSkillErrorMsg("Preencha o valor da perícia");
+    } else if (checkDuplicatedSkill(skillName)) {
+      setSkillErrorMsg("Você já possui essa perícia");
+    } else {
+      return true;
+    }
+  }
+  function handleAddSkill() {
+    setSkillErrorMsg("");
+    const newSkillName = skillsData.skillName.toLowerCase();
+    const newSkillValue = Number(skillsData.skillValue);
+    if (validateSkill(newSkillName, newSkillValue)) {
+      const newArray = [...skills, [newSkillName, newSkillValue]];
+      setSkills(newArray);
+    }
+  }
+
   return (
     <div>
       <form action="">
@@ -128,15 +134,12 @@ export function CreateChar({ userInfo }: CreateCharProps) {
                   placeholder="Nome da Perícia"
                   onChange={handleEditSkillField}
                 />
-
-                <select name="skillValue" onChange={handleEditSkillField}>
-                  <option disabled selected>
-                    Valor do Bônus
-                  </option>
-                  <option value="5">5</option>
-                  <option value="10">10</option>
-                  <option value="15">15</option>
-                </select>
+                <input
+                  type="number"
+                  name="skillValue"
+                  placeholder="Valor do bônus"
+                  onChange={handleEditSkillField}
+                />
               </div>
               <div className={styles.skillErrorMsg}>{skillErrorMsg}</div>
               <button
@@ -148,10 +151,10 @@ export function CreateChar({ userInfo }: CreateCharProps) {
               </button>
             </div>
             <div>
-              {skillsArray.map((skill) => {
+              {skills.map((skill: any) => {
                 return (
-                  <div className={styles.skill} key={skill.at(0)}>
-                    {skill.at(0)} : {skill.at(1)}
+                  <div key={skill.at(0)} className={styles.skill}>
+                    <span>{skill.at(0)}</span>:{skill.at(1)}
                   </div>
                 );
               })}

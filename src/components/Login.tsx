@@ -42,13 +42,8 @@ export function Login({ setUserInfo }: LoginProps) {
   return (
     <div>
       <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value="vandaum"
-        />
-        <input type="password" name="senha" placeholder="Senha" value="senha" />
+        <input type="text" name="username" placeholder="Username" />
+        <input type="password" name="senha" placeholder="Senha" />
         <div className={returnColor}>{errorMsg}</div>
         <button>Entrar</button>
       </form>

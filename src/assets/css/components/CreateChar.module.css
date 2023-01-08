@@ -32,8 +32,13 @@
 }
 .skillsFormWrapper {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
+.skillsFormWrapper select {
+  margin-bottom: 0.5rem;
+}
+
 .skillErrorMsg {
   text-align: center;
   margin-bottom: 1rem;
@@ -42,4 +47,7 @@
 }
 .skill {
   margin-bottom: 1rem;
+}
+.skill span {
+  text-transform: capitalize;
 }
