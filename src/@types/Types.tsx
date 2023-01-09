@@ -1,52 +1,23 @@
 export interface CharInfo {
   id: string;
-  nome: string;
+  name: string;
   nex: number;
   classe?: string;
-  trilha?: string;
-  patente?: string;
-  afinidade?: string;
-  origem: string;
-  versatilidade?: string;
-  idade?: number;
-  atributos: {
-    forca: number;
-    agilidade: number;
-    inteligencia: number;
-    presenca: number;
-    vigor: number;
+  trail?: string;
+  rank?: string;
+  afinity?: string;
+  origin: string;
+  versatility?: string;
+  age?: number;
+  attributes: {
+    str: number;
+    agi: number;
+    int: number;
+    pre: number;
+    vig: number;
   };
   saude: {};
-  pericias: {
-    acrobacia: number;
-    adestramento: number;
-    artes: number;
-    atletismo: number;
-    atualidades: number;
-    ciencias: number;
-    crime: number;
-    diplomacia: number;
-    enganacao: number;
-    fortitude: number;
-    furtividade: number;
-    iniciativa: number;
-    intimidação: number;
-    intuicao: number;
-    investigacao: number;
-    luta: number;
-    medicina: number;
-    ocultismo: number;
-    percepcao: number;
-    pilotagem: number;
-    pontaria: number;
-    profissao: number;
-    reflexos: number;
-    religiao: number;
-    sobreviencia: number;
-    tatica: number;
-    tecnologia: number;
-    vontade: number;
-  };
+  skills: [];
 }
 
 export interface UserInfo {
@@ -57,3 +28,15 @@ export interface UserInfo {
   username?: string;
 }
 export type SkillsInfo = Array<[string, number]>;
+
+export interface newCharInfo {
+  name?: string;
+  age: number;
+  nex: number;
+  class: string;
+  origin: string;
+  trail: string;
+  versatility: string;
+  afinity: string;
+  rank: string;
+}

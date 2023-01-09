@@ -1,6 +1,9 @@
-import { ChangeEvent, useState } from "react";
-import { SkillsInfo, UserInfo } from "../@types/Types";
+import { Trash, X } from "phosphor-react";
+
+import { ChangeEvent, useEffect, useState } from "react";
+import { UserInfo } from "../@types/Types";
 import styles from "../assets/css/components/CreateChar.module.css";
+
 interface CreateCharProps {
   userInfo: UserInfo;
 }
@@ -11,12 +14,23 @@ export function CreateChar({ userInfo }: CreateCharProps) {
     skillName: "",
     skillValue: "",
   });
+  const [charInfo, setCharInfo] = useState({
+    id_usuario: userInfo.id,
+  });
+  const [attributes, setAttributes] = useState({});
+  const [finalCharInfo, setFinalCharInfo] = useState({});
 
   function handleEditSkillField(event: ChangeEvent<HTMLInputElement>) {
     const inputName = event.target.name;
     const inputValue = event.target.value;
     const newData = { ...skillsData, [inputName]: inputValue };
     setSkillsData(newData);
+  }
+  function handleEditAttributeField(event: ChangeEvent<HTMLInputElement>) {
+    const inputName = event.target.name;
+    const inputValue = event.target.value;
+    const newData = { ...attributes, [inputName]: inputValue };
+    setAttributes(newData);
   }
   function checkDuplicatedSkill(skillName: string) {
     const found = skills.find((skill: string) => skill.at(0) == skillName);
@@ -45,27 +59,83 @@ export function CreateChar({ userInfo }: CreateCharProps) {
     }
   }
 
+  function deleteSkill() {
+    const found = skills.map((skill: any) => {
+      // console.log(skill);
+      skill.find((element: any) => element === "acrobacia");
+    });
+
+    console.log(found);
+  }
+
+  function handleCharInfoChange(
+    event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) {
+    const inputName = event.target.name;
+    const inputValue = event.target.value;
+    const newCharInfo = { ...charInfo, [inputName]: inputValue };
+    setCharInfo(newCharInfo);
+  }
+  function saveChar() {
+    const saveChar = async () => {
+      const result = await fetch(`http://localhost:3333/createPersonagem`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(finalCharInfo),
+      });
+      const jsonResult = await result.json();
+      console.log(jsonResult);
+      console.log(finalCharInfo);
+    };
+    saveChar();
+  }
+  function handleCreateChar(event: any) {
+    event?.preventDefault();
+    const finalCharInfo = {
+      ...charInfo,
+      skills: skills,
+      attributes: attributes,
+    };
+    setFinalCharInfo(finalCharInfo);
+
+    saveChar();
+  }
+
   return (
     <div>
-      <form action="">
+      <form onSubmit={handleCreateChar}>
         <div className={styles.blockWrapper}>
           <div className={styles.block}>
             <div className={styles.blockTitle}>Informações Pessoais</div>
             <div className={styles.formItem}>
               <label htmlFor="name">Nome:</label>
-              <input type="text" name="name" />
+              <input
+                type="text"
+                name="name"
+                onChange={handleCharInfoChange}
+                required
+              />
             </div>
             <div className={styles.formItem}>
               <label htmlFor="age">Idade:</label>
-              <input type="number" name="age" />
+              <input type="number" name="age" onChange={handleCharInfoChange} />
             </div>
             <div className={styles.formItem}>
               <label htmlFor="nex">NEX:</label>
-              <input type="number" name="nex" min="0" max="100" />
+              <input
+                type="number"
+                name="nex"
+                min="0"
+                max="100"
+                onChange={handleCharInfoChange}
+                required
+              />
             </div>
             <div className={styles.formItem}>
-              <label htmlFor="class">Classe:</label>
-              <select name="class">
+              <label htmlFor="classe">Classe:</label>
+              <select name="classe" onChange={handleCharInfoChange}>
                 <option value=""></option>
                 <option value="combatente">Combatente</option>
                 <option value="especialista">Especialista</option>
@@ -74,30 +144,44 @@ export function CreateChar({ userInfo }: CreateCharProps) {
             </div>
             <div className={styles.formItem}>
               <label htmlFor="origin">Origem:</label>
-              <input type="text" name="origin" />
+              <input
+                type="text"
+                name="origin"
+                onChange={handleCharInfoChange}
+              />
             </div>
 
             <div className={styles.formItem}>
               <label htmlFor="trail">Trilha:</label>
-              <input type="text" name="trail" />
+              <input type="text" name="trail" onChange={handleCharInfoChange} />
             </div>
             <div className={styles.formItem}>
               <label htmlFor="versatility">Versatilidade:</label>
-              <input type="text" name="versatility" />
+              <input
+                type="text"
+                name="versatility"
+                onChange={handleCharInfoChange}
+              />
             </div>
             <div className={styles.formItem}>
               <label htmlFor="affinity">Afinidade:</label>
-              <input type="text" name="affinity" />
+              <input
+                type="text"
+                name="affinity"
+                onChange={handleCharInfoChange}
+              />
             </div>
             <div className={styles.formItem}>
               <label htmlFor="rank">Patente:</label>
-              <select name="rank">
+              <select name="rank" onChange={handleCharInfoChange}>
                 <option value=""></option>
-                <option value="recruta">Recruta</option>
-                <option value="operador">Operador</option>
-                <option value="agenteEspecial">Agente Especial</option>
-                <option value="oficialDeOperacoes">Oficial de Operações</option>
-                <option value="elite">Elite</option>
+                <option value="Recruta">Recruta</option>
+                <option value="Operador">Operador</option>
+                <option value="Agente Especial">Agente Especial</option>
+                <option value="Oficial De Operacoes">
+                  Oficial de Operações
+                </option>
+                <option value="Elite">Elite</option>
               </select>
             </div>
           </div>
@@ -105,23 +189,48 @@ export function CreateChar({ userInfo }: CreateCharProps) {
             <div className={styles.blockTitle}>Atributos</div>
             <div className={styles.formItem}>
               <label htmlFor="str">Força:</label>
-              <input type="number" name="str" />
+              <input
+                type="number"
+                name="str"
+                onChange={handleEditAttributeField}
+                required
+              />
             </div>
             <div className={styles.formItem}>
               <label htmlFor="agi">Agilidade:</label>
-              <input type="number" name="agi" />
+              <input
+                type="number"
+                name="agi"
+                onChange={handleEditAttributeField}
+                required
+              />
             </div>
             <div className={styles.formItem}>
               <label htmlFor="vig">Vigor:</label>
-              <input type="number" name="vig" />
+              <input
+                type="number"
+                name="vig"
+                onChange={handleEditAttributeField}
+                required
+              />
             </div>
             <div className={styles.formItem}>
               <label htmlFor="int">Inteligência:</label>
-              <input type="number" name="int" />
+              <input
+                type="number"
+                name="int"
+                onChange={handleEditAttributeField}
+                required
+              />
             </div>
             <div className={styles.formItem}>
               <label htmlFor="pre">Presença:</label>
-              <input type="number" name="pre" />
+              <input
+                type="number"
+                name="pre"
+                onChange={handleEditAttributeField}
+                required
+              />
             </div>
           </div>
           <div className={styles.block}>
@@ -154,12 +263,23 @@ export function CreateChar({ userInfo }: CreateCharProps) {
               {skills.map((skill: any) => {
                 return (
                   <div key={skill.at(0)} className={styles.skill}>
+                    <X
+                      size={22}
+                      className={styles.trashCan}
+                      onClick={deleteSkill}
+                    />{" "}
                     <span>{skill.at(0)}</span>:{skill.at(1)}
                   </div>
                 );
               })}
             </div>
           </div>
+        </div>
+        <div>
+          <button type="submit" className={styles.createCharButton}>
+            {" "}
+            Criar Personagem
+          </button>
         </div>
       </form>
     </div>

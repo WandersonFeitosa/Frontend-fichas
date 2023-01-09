@@ -7,11 +7,9 @@ interface ShowCharInfoProps {
   userInfo: UserInfo;
 }
 
-
 export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
   const [chars, setChars] = useState<CharInfo[]>([]);
   const [charInfo, setCharInfo] = useState<CharInfo>();
-  const [skillsArray, setSkillsArray] = useState<SkillsInfo>([]);
 
   function showChars() {
     const listChars = async () => {
@@ -35,9 +33,6 @@ export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
       (x) => x.id === event?.target.value
     );
     setCharInfo(charStatus);
-    if (charStatus) {
-      setSkillsArray(Object.entries(charStatus.pericias));
-    }
   }
 
   return (
@@ -52,7 +47,7 @@ export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
         {chars.map((char) => {
           return (
             <option key={char.id} value={char.id}>
-              {char.nome}
+              {char.name}
             </option>
           );
         })}
@@ -66,12 +61,12 @@ export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
           </div>
           <div className={styles.charInfoItem}>
             <span>Nome: </span>
-            {charInfo?.nome}
+            {charInfo?.name}
           </div>
 
           <div className={styles.charInfoItem}>
             <span>Idade: </span>
-            {charInfo?.idade}
+            {charInfo?.age}
           </div>
 
           <div className={styles.charInfoItem}>
@@ -81,32 +76,32 @@ export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
 
           <div className={styles.charInfoItem}>
             <span>Origem: </span>
-            {charInfo?.origem}
+            {charInfo?.origin}
           </div>
 
           <div className={styles.charInfoItem}>
             <span>NEX: </span>
-            {charInfo?.nex}
+            {charInfo?.nex}%
           </div>
 
           <div className={styles.charInfoItem}>
             <span>Trilha: </span>
-            {charInfo?.trilha}
+            {charInfo?.trail}
           </div>
 
           <div className={styles.charInfoItem}>
             <span>Patente: </span>
-            {charInfo?.patente}
+            {charInfo?.rank}
           </div>
 
           <div className={styles.charInfoItem}>
             <span>Afinidade: </span>
-            {charInfo?.afinidade}
+            {charInfo?.afinity}
           </div>
 
           <div className={styles.charInfoItem}>
             <span>Versatilidade: </span>
-            {charInfo?.versatilidade}
+            {charInfo?.versatility}
           </div>
         </div>
 
@@ -114,30 +109,30 @@ export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
           <div>
             <div className={styles.charInfoItem}>
               <span>Força: </span>
-              {charInfo?.atributos?.forca}
+              {charInfo?.attributes?.str}
             </div>
             <div className={styles.charInfoItem}>
               <span>Agilidade: </span>
-              {charInfo?.atributos?.agilidade}
+              {charInfo?.attributes?.agi}
             </div>
             <div className={styles.charInfoItem}>
               <span>Vigor: </span>
-              {charInfo?.atributos?.vigor}
+              {charInfo?.attributes?.vig}
             </div>
             <div className={styles.charInfoItem}>
               <span>Inteligência: </span>
-              {charInfo?.atributos?.inteligencia}
+              {charInfo?.attributes?.int}
             </div>
             <div className={styles.charInfoItem}>
               <span>Presença: </span>
-              {charInfo?.atributos?.presenca}
+              {charInfo?.attributes?.pre}
             </div>
           </div>
         </div>
       </div>
       <div className={styles.charInfoBlock}>
         <div className={styles.skillsBlock}>
-          {skillsArray.map((skills) => {
+          {charInfo?.skills.map((skills: any) => {
             return (
               <div key={skills.at(0)} className={styles.skill}>
                 {skills.at(0)}:{skills.at(1)}

@@ -7,6 +7,7 @@
   border: 1px solid var(--gray-300);
   border-radius: 8px;
   padding: 1rem;
+  height: max-content;
 }
 .formItem {
   display: flex;
@@ -47,7 +48,21 @@
 }
 .skill {
   margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
 }
 .skill span {
   text-transform: capitalize;
+}
+.trashCan {
+  margin-right: 0.5rem;
+}
+.trashCan:hover {
+  color: #f75a68;
+  cursor: pointer;
+}
+.createCharButton {
+  margin-top: 1rem;
+  text-transform: uppercase;
+  padding: 1rem 4rem;
 }
