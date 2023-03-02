@@ -35,6 +35,7 @@ export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
     setCharInfo(charStatus);
   }
 
+  console.log(charInfo)
   return (
     <div>
       <select

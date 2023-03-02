@@ -32,12 +32,21 @@ export function CreateChar({ userInfo }: CreateCharProps) {
     const newData = { ...attributes, [inputName]: inputValue };
     setAttributes(newData);
   }
+
   function checkDuplicatedSkill(skillName: string) {
-    const found = skills.find((skill: string) => skill.at(0) == skillName);
-    if (found) {
-      return true;
-    }
+    const skillToCheck = skillName;
+    const haveSkill = skills
+      .map((skill: any) => {
+        if (skill.skillName == skillToCheck) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+      .find((skill: any) => skill == true);
+    return haveSkill;
   }
+
   function validateSkill(skillName: string, skillValue: number) {
     if (!skillName) {
       setSkillErrorMsg("Preencha o nome da perícia");
@@ -54,20 +63,17 @@ export function CreateChar({ userInfo }: CreateCharProps) {
     const newSkillName = skillsData.skillName.toLowerCase();
     const newSkillValue = Number(skillsData.skillValue);
     if (validateSkill(newSkillName, newSkillValue)) {
-      const newArray = [...skills, [newSkillName, newSkillValue]];
+      const newArray = [
+        ...skills,
+        { skillName: newSkillName, skillValue: newSkillValue },
+      ];
       setSkills(newArray);
     }
   }
-
-  function deleteSkill() {
-    const found = skills.map((skill: any) => {
-      // console.log(skill);
-      skill.find((element: any) => element === "acrobacia");
-    });
-
-    console.log(found);
+  function handleDeleteSkill(event: any) {
+    console.log(event?.target.id);
+    console.log(skills);
   }
-
   function handleCharInfoChange(
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
@@ -262,13 +268,15 @@ export function CreateChar({ userInfo }: CreateCharProps) {
             <div>
               {skills.map((skill: any) => {
                 return (
-                  <div key={skill.at(0)} className={styles.skill}>
-                    <X
-                      size={22}
+                  <div className={styles.skill} key={skill.skillName}>
+                    <div
                       className={styles.trashCan}
-                      onClick={deleteSkill}
-                    />{" "}
-                    <span>{skill.at(0)}</span>:{skill.at(1)}
+                      onClick={handleDeleteSkill}
+                    >
+                      <div id={skill.skillName}>X</div>
+                      {/* <X size={22}/> */}
+                    </div>
+                    <span>{skill.skillName}</span> : {skill.skillValue}
                   </div>
                 );
               })}
