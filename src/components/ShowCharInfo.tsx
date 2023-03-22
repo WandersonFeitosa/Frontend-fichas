@@ -1,7 +1,7 @@
 import { ChangeEvent, useState } from "react";
 import { CharInfo, SkillsInfo, UserInfo } from "../@types/Types";
 import styles from "../assets/css/components/ShowCharInfo.module.css";
-import env from "../../env.json";
+import { base_url } from "../../env.json";
 
 interface ShowCharInfoProps {
   userInfo: UserInfo;
@@ -13,12 +13,9 @@ export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
 
   function showChars() {
     const listChars = async () => {
-      const result = await fetch(
-        `${env.base_url}/listPersonagem/${userInfo.id}`,
-        {
-          method: "GET",
-        }
-      );
+      const result = await fetch(`${base_url}/listPersonagem/${userInfo.id}`, {
+        method: "GET",
+      });
       const jsonResult = await result.json();
       setChars(jsonResult);
     };
@@ -35,7 +32,7 @@ export function ShowCharInfo({ userInfo }: ShowCharInfoProps) {
     setCharInfo(charStatus);
   }
 
-  console.log(charInfo)
+  console.log(charInfo);
   return (
     <div>
       <select

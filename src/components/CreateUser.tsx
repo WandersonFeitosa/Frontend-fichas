@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from "../assets/css/components/CreateUser.module.css";
 import globalStyles from "../Global.module.css";
+import { base_url } from "../../env.json";
 
 export function CreateUser() {
   const [errorMsg, setErrorMsg] = useState("");
@@ -16,7 +17,7 @@ export function CreateUser() {
       senha: form.password.value,
     };
     const fetchData = async () => {
-      const result = await fetch(`http://localhost:3333/createUsuario`, {
+      const result = await fetch(`${base_url}/createUsuario`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

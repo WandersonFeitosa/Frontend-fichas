@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import styles from "../assets/css/components/AddCharOnTable.module.css";
 import globalStyles from "../Global.module.css";
 import { UserInfo } from "../@types/Types";
+import { base_url } from "../../env.json";
+import { CreateTable } from "./CreateTable";
 
 interface AddCharOnTable {
   userInfo: UserInfo;
@@ -19,12 +21,9 @@ export function AddCharOnTable({ userInfo }: AddCharOnTable) {
 
   useEffect(() => {
     const listTables = async () => {
-      const result = await fetch(
-        `http://localhost:3333/listMesa/${userInfo.id}`,
-        {
-          method: "GET",
-        }
-      );
+      const result = await fetch(`${base_url}/listMesa/${userInfo.id}`, {
+        method: "GET",
+      });
       const jsonResult = await result.json();
       setTables(jsonResult);
     };
@@ -32,7 +31,8 @@ export function AddCharOnTable({ userInfo }: AddCharOnTable) {
     } else {
       listTables();
     }
-  }, [userInfo]);
+    console.log("tables", tables);
+  }, [userInfo, CreateTable]);
 
   function handleBindChar(event: any) {
     setErrorMsg("");

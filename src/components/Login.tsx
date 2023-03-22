@@ -1,14 +1,15 @@
 import { useState } from "react";
 import globalStyles from "../Global.module.css";
 import styles from "../assets/css/components/Login.module.css";
+import { base_url } from "../../env.json";
 
 interface LoginProps {
   setUserInfo: Function;
 }
 export function Login({ setUserInfo }: LoginProps) {
-  const [returnColor, setReturnColor] = useState(globalStyles.errorMsg); 
+  const [returnColor, setReturnColor] = useState(globalStyles.errorMsg);
   const [errorMsg, setErrorMsg] = useState("");
-
+ 
   function handleLogin(event: any) {
     event.preventDefault();
 
@@ -20,7 +21,7 @@ export function Login({ setUserInfo }: LoginProps) {
     };
 
     const logUser = async () => {
-      const result = await fetch(`http://localhost:3333/login`, {
+      const result = await fetch(`${base_url}/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,7 +46,7 @@ export function Login({ setUserInfo }: LoginProps) {
       <form onSubmit={handleLogin}>
         <input type="text" name="username" placeholder="Username" />
         <input type="password" name="senha" placeholder="Senha" />
-        <div className={returnColor }>{errorMsg}</div>
+        <div className={returnColor}>{errorMsg}</div>
         <button className={styles.loginButton}>Entrar</button>
       </form>
     </div>

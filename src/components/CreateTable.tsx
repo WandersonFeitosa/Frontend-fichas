@@ -1,7 +1,7 @@
-import { useState } from "react";
-import styles from "../assets/css/components/CreateTable.module.css";
+import { useState, useEffect } from "react";
 import globalStyles from "../Global.module.css";
 import { UserInfo } from "../@types/Types";
+import { base_url } from "../../env.json";
 
 interface CreateTableProps {
   userInfo: UserInfo;
@@ -10,6 +10,7 @@ interface CreateTableProps {
 export function CreateTable({ userInfo }: CreateTableProps) {
   const [errorMsg, setErrorMsg] = useState("");
   const [returnColor, setReturnColor] = useState(globalStyles.errorMsg);
+  
   function handleCreateTable(event: any) {
     setErrorMsg("");
     setReturnColor(globalStyles.errorMsg);
@@ -27,8 +28,8 @@ export function CreateTable({ userInfo }: CreateTableProps) {
       id_usuario: userInfo.id,
       titulo: form.tableName.value,
     };
-    const fetchData = async () => {
-      const result = await fetch(`http://localhost:3333/createMesa`, {
+    const createTable = async () => {
+      const result = await fetch(`${base_url}/createMesa`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,9 +43,9 @@ export function CreateTable({ userInfo }: CreateTableProps) {
       } else {
         setReturnColor(globalStyles.errorMsg);
       }
-      setErrorMsg(jsonResult.message);    
+      setErrorMsg(jsonResult.message);
     };
-    fetchData();
+    createTable();
   }
   return (
     <form onSubmit={handleCreateTable}>

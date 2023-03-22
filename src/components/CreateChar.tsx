@@ -2,6 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { UserInfo } from "../@types/Types";
 import styles from "../assets/css/components/CreateChar.module.css";
 import globalStyles from "../Global.module.css";
+import { base_url } from "../../env.json";
 
 interface CreateCharProps {
   userInfo: UserInfo;
@@ -93,7 +94,7 @@ export function CreateChar({ userInfo }: CreateCharProps) {
   }
   function saveChar() {
     const saveChar = async () => {
-      const result = await fetch(`http://localhost:3333/createPersonagem`, {
+      const result = await fetch(`${base_url}/createPersonagem`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
