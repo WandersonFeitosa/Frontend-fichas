@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../assets/css/components/CreateUser.module.css";
+import globalStyles from "../Global.module.css";
 
 export function CreateUser() {
   const [errorMsg, setErrorMsg] = useState("");
@@ -25,9 +26,9 @@ export function CreateUser() {
       const jsonResult = await result.json();
 
       if (result.status < 300) {
-        setReturnColor(styles.successMsg);
+        setReturnColor(globalStyles.successMsg);
       } else {
-        setReturnColor(styles.errorMsg);
+        setReturnColor(globalStyles.errorMsg);
       }
       setErrorMsg(jsonResult.message);
     };

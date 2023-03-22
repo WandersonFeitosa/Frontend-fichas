@@ -1,6 +1,7 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import { UserInfo } from "../@types/Types";
 import styles from "../assets/css/components/CreateChar.module.css";
+import globalStyles from "../Global.module.css";
 
 interface CreateCharProps {
   userInfo: UserInfo;
@@ -18,7 +19,7 @@ export function CreateChar({ userInfo }: CreateCharProps) {
   const [attributes, setAttributes] = useState({});
   const [finalCharInfo, setFinalCharInfo] = useState({});
   const [errorMsg, setErrorMsg] = useState("");
-  const [returnColor, setReturnColor] = useState(styles.errorMsg);
+  const [returnColor, setReturnColor] = useState(globalStyles.errorMsg);
 
   function handleEditSkillField(event: ChangeEvent<HTMLInputElement>) {
     const inputName = event.target.name;
@@ -102,14 +103,14 @@ export function CreateChar({ userInfo }: CreateCharProps) {
       const jsonResult = await result.json();
 
       if (result.status < 300) {
-        setReturnColor(styles.successMsg);
+        setReturnColor(globalStyles.successMsg);
         setErrorMsg(jsonResult.message);
         setFinalCharInfo({});
         setCharInfo({
           id_usuario: userInfo.id,
         });
       } else {
-        setReturnColor(styles.errorMsg);
+        setReturnColor(globalStyles.errorMsg);
         setErrorMsg(jsonResult.message);
       }
     };

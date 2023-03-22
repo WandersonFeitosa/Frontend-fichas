@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import styles from "../assets/css/components/AddCharOnTable.module.css";
+import globalStyles from "../Global.module.css";
 import { UserInfo } from "../@types/Types";
 
 interface AddCharOnTable {
@@ -14,7 +15,7 @@ export function AddCharOnTable({ userInfo }: AddCharOnTable) {
     },
   ]);
   const [errorMsg, setErrorMsg] = useState("");
-  const [returnColor, setReturnColor] = useState(styles.errorMsg);
+  const [returnColor, setReturnColor] = useState(globalStyles.errorMsg);
 
   useEffect(() => {
     const listTables = async () => {
@@ -53,9 +54,9 @@ export function AddCharOnTable({ userInfo }: AddCharOnTable) {
       const jsonResult = await result.json();
       console.log(jsonResult);
       if (result.status < 300) {
-        setReturnColor(styles.successMsg);
+        setReturnColor(globalStyles.successMsg);
       } else {
-        setReturnColor(styles.errorMsg);
+        setReturnColor(globalStyles.errorMsg);
       }
       setErrorMsg(jsonResult.message);
     };

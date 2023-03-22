@@ -1,11 +1,12 @@
 import { useState } from "react";
+import globalStyles from "../Global.module.css";
 import styles from "../assets/css/components/Login.module.css";
 
 interface LoginProps {
   setUserInfo: Function;
 }
 export function Login({ setUserInfo }: LoginProps) {
-  const [returnColor, setReturnColor] = useState(styles.errorMsg);
+  const [returnColor, setReturnColor] = useState(globalStyles.errorMsg); 
   const [errorMsg, setErrorMsg] = useState("");
 
   function handleLogin(event: any) {
@@ -32,7 +33,7 @@ export function Login({ setUserInfo }: LoginProps) {
         setReturnColor(styles.successMsg);
         setUserInfo(jsonResult.userInfo);
       } else {
-        setReturnColor(styles.errorMsg);
+        setReturnColor(globalStyles.errorMsg);
       }
       setErrorMsg(jsonResult.message);
     };
@@ -44,8 +45,8 @@ export function Login({ setUserInfo }: LoginProps) {
       <form onSubmit={handleLogin}>
         <input type="text" name="username" placeholder="Username" />
         <input type="password" name="senha" placeholder="Senha" />
-        <div className={returnColor}>{errorMsg}</div>
-        <button>Entrar</button>
+        <div className={returnColor }>{errorMsg}</div>
+        <button className={styles.loginButton}>Entrar</button>
       </form>
     </div>
   );

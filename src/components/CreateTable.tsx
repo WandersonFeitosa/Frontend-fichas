@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styles from "../assets/css/components/CreateTable.module.css";
+import globalStyles from "../Global.module.css";
 import { UserInfo } from "../@types/Types";
 
 interface CreateTableProps {
@@ -8,10 +9,10 @@ interface CreateTableProps {
 
 export function CreateTable({ userInfo }: CreateTableProps) {
   const [errorMsg, setErrorMsg] = useState("");
-  const [returnColor, setReturnColor] = useState(styles.errorMsg);
+  const [returnColor, setReturnColor] = useState(globalStyles.errorMsg);
   function handleCreateTable(event: any) {
     setErrorMsg("");
-    setReturnColor(styles.errorMsg);
+    setReturnColor(globalStyles.errorMsg);
     event.preventDefault();
 
     const form = event.target;
@@ -37,9 +38,9 @@ export function CreateTable({ userInfo }: CreateTableProps) {
       const jsonResult = await result.json();
 
       if (result.status < 300) {
-        setReturnColor(styles.successMsg);
+        setReturnColor(globalStyles.successMsg);
       } else {
-        setReturnColor(styles.errorMsg);
+        setReturnColor(globalStyles.errorMsg);
       }
       setErrorMsg(jsonResult.message);    
     };

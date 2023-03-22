@@ -16,14 +16,4 @@
   font-size: 1.5rem;
   font-weight: bold;
 }
-ul {
-  list-style: none;
-}
-li {
-  margin-bottom: 1rem;
-  opacity: 0.9;
-}
-li:hover {
-  opacity: 1;
-  cursor: pointer;
-}
+

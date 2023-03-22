@@ -24,11 +24,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
   background: var(--gray-900);
   color: var(--gray-300);
   -webkit-fot-smoothing: antialiased;
 }
+
 body,
 input,
 textarea,
@@ -37,6 +39,7 @@ button {
   font-weight: 400;
   font-size: 1rem;
 }
+
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -46,5 +49,71 @@ input::-webkit-inner-spin-button {
 
 /* Firefox */
 input[type="number"] {
+  appearance: textfield;
   -moz-appearance: textfield;
+}
+
+input {
+  font-size: 0.875rem;
+  width: 100%;
+  background: var(--gray-900);
+  border: 0;
+  resize: none;
+  padding: 0.5rem;
+  border-radius: 8px;
+  color: var(--gray-100);
+  margin-bottom: 1rem;
+}
+
+input::placeholder {
+  color: var(--gray-100);
+  opacity: 0.4;
+}
+
+button {
+  font-size: 0.875rem;
+  background: transparent;
+  color: var(--green-500);
+  border: 1px solid var(--green-500);
+  border-radius: 8px;
+  padding: 0.5rem 0;
+  width: 100%;
+  font-weight: bold;
+  display: flex;
+  text-decoration: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+button:hover {
+  background: var(--green-500);
+  color: var(--white);
+}
+
+select {
+  width: 100%;
+  background: none;
+  color: var(--gray-100);
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+select * {
+  background: var(--gray-700);
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+li:hover {
+  opacity: 1;
+  cursor: pointer;
 }
