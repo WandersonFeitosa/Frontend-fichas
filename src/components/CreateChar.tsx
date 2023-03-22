@@ -1,5 +1,3 @@
-import { Trash, X } from "phosphor-react";
-
 import { ChangeEvent, useEffect, useState } from "react";
 import { UserInfo } from "../@types/Types";
 import styles from "../assets/css/components/CreateChar.module.css";
@@ -19,6 +17,8 @@ export function CreateChar({ userInfo }: CreateCharProps) {
   });
   const [attributes, setAttributes] = useState({});
   const [finalCharInfo, setFinalCharInfo] = useState({});
+  const [errorMsg, setErrorMsg] = useState("");
+  const [returnColor, setReturnColor] = useState(styles.errorMsg);
 
   function handleEditSkillField(event: ChangeEvent<HTMLInputElement>) {
     const inputName = event.target.name;
@@ -71,13 +71,21 @@ export function CreateChar({ userInfo }: CreateCharProps) {
     }
   }
   function handleDeleteSkill(event: any) {
-    console.log(event?.target.id);
-    console.log(skills);
+    const skillToRemove = event?.target.id;
+    setSkills(removeSkillFromSkillsArray(skills, skillToRemove));
   }
+
+  function removeSkillFromSkillsArray(
+    skills: { skillName: string; skillValue: number }[],
+    skillName: string
+  ): { skillName: string; skillValue: number }[] {
+    return skills.filter((skill) => skill.skillName !== skillName);
+  }
+
   function handleCharInfoChange(
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
-    const inputName = event.target.name;
+    const inputName = event.target.name.toLowerCase();
     const inputValue = event.target.value;
     const newCharInfo = { ...charInfo, [inputName]: inputValue };
     setCharInfo(newCharInfo);
@@ -92,8 +100,18 @@ export function CreateChar({ userInfo }: CreateCharProps) {
         body: JSON.stringify(finalCharInfo),
       });
       const jsonResult = await result.json();
-      console.log(jsonResult);
-      console.log(finalCharInfo);
+
+      if (result.status < 300) {
+        setReturnColor(styles.successMsg);
+        setErrorMsg(jsonResult.message);
+        setFinalCharInfo({});
+        setCharInfo({
+          id_usuario: userInfo.id,
+        });
+      } else {
+        setReturnColor(styles.errorMsg);
+        setErrorMsg(jsonResult.message);
+      }
     };
     saveChar();
   }
@@ -283,6 +301,7 @@ export function CreateChar({ userInfo }: CreateCharProps) {
             </div>
           </div>
         </div>
+        <div className={returnColor}>{errorMsg}</div>
         <div>
           <button type="submit" className={styles.createCharButton}>
             {" "}
