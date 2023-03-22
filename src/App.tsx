@@ -8,7 +8,6 @@ import { NavigationScreen } from "./interfaces/navigationScreen/NavigationScreen
 
 function App() {
   const [userInfo, setUserInfo] = useState<UserInfo>({});
-  const [content, setContent] = useState<any>();
   const [disabledLogin, setDisabledLogin] = useState({ display: "" });
   const [disabledNavigation, setDisabledNavigation] = useState({
     display: "none",

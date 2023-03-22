@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { UserInfo } from "../../@types/Types";
 import styles from "../../assets/css/interfaces/navigationScreen/MainContent.module.css";
 import { AddCharOnTable } from "../../components/AddCharOnTable";
@@ -53,7 +52,7 @@ export function MainContent({
           <div className={styles.tableItem}>
             <div>
               <div className={styles.blockTitle}>Criar uma mesa</div>
-              <CreateTable userInfo={userInfo} />
+              <CreateTable userInfo={userInfo} setUserInfo={setUserInfo} />
             </div>
           </div>
           <div className={styles.tableItem}>

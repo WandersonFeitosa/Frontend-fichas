@@ -19,6 +19,7 @@ export function AddCharOnTable({ userInfo }: AddCharOnTable) {
   const [errorMsg, setErrorMsg] = useState("");
   const [returnColor, setReturnColor] = useState(globalStyles.errorMsg);
 
+  
   useEffect(() => {
     const listTables = async () => {
       const result = await fetch(`${base_url}/listMesa/${userInfo.id}`, {
@@ -32,7 +33,7 @@ export function AddCharOnTable({ userInfo }: AddCharOnTable) {
       listTables();
     }
     console.log("tables", tables);
-  }, [userInfo, CreateTable]);
+  }, [userInfo]);
 
   function handleBindChar(event: any) {
     setErrorMsg("");
@@ -42,7 +43,6 @@ export function AddCharOnTable({ userInfo }: AddCharOnTable) {
       personagem_id: form.personagem_id.value,
       id_mesa: form.id_mesa.value,
     };
-    console.log(bindInfo);
     const bindChar = async () => {
       const result = await fetch(`http://localhost:3333/vincularMesa`, {
         method: "PATCH",

@@ -5,12 +5,12 @@ import { base_url } from "../../env.json";
 
 interface CreateTableProps {
   userInfo: UserInfo;
+  setUserInfo: Function;
 }
 
-export function CreateTable({ userInfo }: CreateTableProps) {
+export function CreateTable({ userInfo, setUserInfo }: CreateTableProps) {
   const [errorMsg, setErrorMsg] = useState("");
   const [returnColor, setReturnColor] = useState(globalStyles.errorMsg);
-  
   function handleCreateTable(event: any) {
     setErrorMsg("");
     setReturnColor(globalStyles.errorMsg);
@@ -39,7 +39,11 @@ export function CreateTable({ userInfo }: CreateTableProps) {
       const jsonResult = await result.json();
 
       if (result.status < 300) {
-        setReturnColor(globalStyles.successMsg);
+        setReturnColor(globalStyles.successMsg);        
+        //Faço isso para que o useEffect de AddCharOnTable.tsx seja executado novamente
+        const oldNewTables = userInfo.newTables || 0;
+        const newNewTables = oldNewTables + 1;
+        setUserInfo({ ...userInfo, newTables: newNewTables });
       } else {
         setReturnColor(globalStyles.errorMsg);
       }

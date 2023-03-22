@@ -26,6 +26,7 @@ export interface UserInfo {
   lastName?: string;
   email?: string;
   username?: string;
+  newTables?: number;
 }
 export type SkillsInfo = Array<[string, number]>;
 
